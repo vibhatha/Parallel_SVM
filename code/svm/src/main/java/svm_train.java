@@ -7,10 +7,12 @@ class svm_train {
     private svm_problem prob;		// set by read_problem
     private svm_model model;
     private String input_file_name;		// set by parse_command_line
+    private String input_file_name_; // set baseUrl less file name
     private String model_file_name;		// set by parse_command_line
     private String error_msg;
     private int cross_validation;
     private int nr_fold;
+    private String baseUrl;
 
     private static svm_print_interface svm_print_null = new svm_print_interface()
     {
@@ -107,8 +109,11 @@ class svm_train {
         }
         else
         {
+
             model = svm.svm_train(prob,param);
-            svm.svm_save_model(model_file_name,model);
+            input_file_name_ = argv[argv.length-2];
+            System.out.println(input_file_name_);
+            svm.svm_save_model(model_file_name+"/"+input_file_name_+"model",model);
         }
     }
 
@@ -245,7 +250,10 @@ class svm_train {
         if(i>=argv.length)
             exit_with_help();
 
-        input_file_name = argv[i];
+        baseUrl = argv[i+1];
+        input_file_name_ = input_file_name;
+        input_file_name = baseUrl + argv[i];
+
 
         if(i<argv.length-1)
             model_file_name = argv[i+1];
