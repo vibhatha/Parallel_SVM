@@ -37,6 +37,8 @@ if mode == 0
 		max_samples_for_cluster =5000;
 		num = min(max_samples_for_cluster, n);
 		tic;
+        trainX = full(trainX);
+        %testX = full(testX);
 		[i centers] = kmeans(trainX(randper(1:num),:),k,'MaxIter',10,'emptyaction','singleton','Display','iter');
 		toc
 		dis = sum(trainX.*trainX,2)*ones(1,k)+ones(n,1)*(sum(centers.*centers,2))'-2*trainX*centers';

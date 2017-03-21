@@ -1,8 +1,12 @@
 addpath('../libsvm-3.14-nobias/matlab');
 maxNumCompThreads(1);
 
-[trainy trainX] = libsvmread('../data/ijcnn1.train');
+[trainy, trainX] = libsvmread('../data/ijcnn1.train');
 [testy, testX] = libsvmread('../data/ijcnn1.t');
+trainy = double(trainy);
+trainX = double(trainX);
+testy = double(testy);
+testX = double(testX);
 %% train/test rbf kernel SVM
 ncluster = 10;
 gamma = 2;
