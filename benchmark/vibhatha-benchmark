@@ -1,0 +1,27 @@
+PenDigits
+=========
+RBF kernel, DCSVM-early test accuracy 0.448542, training time 2.08 seconds
+
+IJCNN
+======
+
+RBF kernel, DCSVM-early test accuracy 0.983959, training time 2.13 seconds
+
+Poker
+======
+RBF kernel, DCSVM-early test accuracy 0.522144, training time 10.7 seconds
+
+Wine
+======
+
+RBF kernel, DCSVM-early test accuracy 1, training time 0.05 seconds
+
+Iris
+=====
+
+RBF kernel, DCSVM-early test accuracy 1, training time 0.04 seconds
+
+DNA
+=====
+RBF kernel, DCSVM-early test accuracy 0.8086, training time 0.48 seconds
+
