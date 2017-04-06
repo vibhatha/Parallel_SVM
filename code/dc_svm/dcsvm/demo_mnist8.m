@@ -1,8 +1,8 @@
 addpath('../libsvm-3.14-nobias/matlab');
 maxNumCompThreads(1);
-
-[trainy, trainX] = libsvmread('../data/mnist8m');
-[testy, testX] = libsvmread('../data/mnist8m');
+fprintf(' MNIST Data Set \n')
+[trainy, trainX] = libsvmread('../data/mnist');
+[testy, testX] = libsvmread('../data/mnist.t');
 trainy = double(trainy);
 trainX = double(trainX);
 testy = double(testy);

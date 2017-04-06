@@ -1,5 +1,5 @@
 addpath('../libsvm-3.14-nobias/matlab');
-maxNumCompThreads(1);
+maxNumCompThreads(4);
 
 [trainy, trainX] = libsvmread('../data/ijcnn1.train');
 [testy, testX] = libsvmread('../data/ijcnn1.t');

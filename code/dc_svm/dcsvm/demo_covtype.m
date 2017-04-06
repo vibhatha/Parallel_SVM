@@ -1,5 +1,5 @@
 addpath('../libsvm-3.14-nobias/matlab');
-
+maxNumCompThreads(4);
 [y X] = libsvmread('../data/covtype.libsvm.binary.scale');
 l = size(X,1);
 p = randperm(l);
@@ -14,6 +14,16 @@ C = 32;
 model = dcsvm_rbf_train(trainy, trainX, C, gamma, ncluster);
 [labels accuracy] = dcsvm_test(testy, testX, model);
 fprintf('RBF kernel, test accuracy %g\n', accuracy);
+
+
+fprintf('Start training Gaussian kernel SVM\n');
+timebegin = cputime;
+model_exact = dcsvm_rbf_train_exact(trainy, trainX, C, gamma);
+trainingtime = cputime - timebegin;
+[labels_exact accuracy_exact] = dcsvm_test(testy, testX, model_exact);
+fprintf('RBF kernel, DC-SVM test accuracy %g, training time %g seconds\n', accuracy_exact, trainingtime);
+
+
 
 %% WARNING: polynomial training is slow
 %% train/test polynomial kernel SVM
