@@ -1,8 +1,8 @@
 addpath('../libsvm-3.14-nobias/matlab');
 maxNumCompThreads(4);
 
-[trainy, trainX] = libsvmread('../data/ijcnn1.train');
-[testy, testX] = libsvmread('../data/ijcnn1.t');
+[trainy, trainX] = libsvmread('../data/webspam_wc_normalized_unigram.svm');
+[testy, testX] = libsvmread('../data/webspam_wc_normalized_unigram.svm');
 trainy = double(trainy);
 trainX = double(trainX);
 testy = double(testy);
@@ -27,8 +27,6 @@ fprintf('=============================================== \n');
 fprintf('RBF kernel, DCSVM-early test accuracy %g, training time %g seconds\n', accuracy, trainingtimeerl);
 fprintf('=============================================== \n');
 fprintf('RBF kernel, DC-SVM test accuracy %g, training time %g seconds\n', accuracy_exact, trainingtime);
-
-
 
 %{
 %% train/test polynomial kernel SVM

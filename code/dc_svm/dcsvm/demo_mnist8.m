@@ -14,15 +14,18 @@ C = 32;
 fprintf('Start training Gaussian kernel SVM with early prediction\n', ncluster);
 timebegin = cputime;
 model = dcsvm_rbf_train(trainy, trainX, C, gamma, ncluster);
-trainingtime = cputime - timebegin;
+trainingtimeerl = cputime - timebegin;
 [labels accuracy] = dcsvm_test(testy, testX, model);
-fprintf('RBF kernel, DCSVM-early test accuracy %g, training time %g seconds\n', accuracy, trainingtime);
-pause;
+
+
 fprintf('Start training Gaussian kernel SVM\n');
 timebegin = cputime;
 model_exact = dcsvm_rbf_train_exact(trainy, trainX, C, gamma);
 trainingtime = cputime - timebegin;
 [labels_exact accuracy_exact] = dcsvm_test(testy, testX, model_exact);
+fprint('===========================================================\n');
+fprintf('RBF kernel, DCSVM-early test accuracy %g, training time %g seconds\n', accuracy, trainingtimeerl);
+fprint('===========================================================\n');
 fprintf('RBF kernel, DC-SVM test accuracy %g, training time %g seconds\n', accuracy_exact, trainingtime);
 
 %{
