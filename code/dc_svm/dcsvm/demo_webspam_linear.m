@@ -13,28 +13,28 @@ testy = double(testy);
 testX = double(testX);
 %% train/test rbf kernel SVM
 ncluster = 10;
-gamma = 0.1;
-C = 7;
+gamma = 1;
+C = 1;
 fprintf('Start training Gaussian kernel SVM with early prediction\n', ncluster);
 timebegin = cputime;
-model = dcsvm_rbf_train(trainy, trainX, C, gamma, ncluster);
+model = dcsvm_poly_train(trainy, trainX, C, gamma, 1 ,ncluster);
 trainingtimeerl = cputime - timebegin;
 [labels accuracy] = dcsvm_test(testy, testX, model);
 
 %fprintf('Start training Gaussian kernel SVM\n');
-%timebegin = cputime;
-%model_exact = dcsvm_rbf_train_exact(trainy, trainX, C, gamma);
-%trainingtime = cputime - timebegin;
-%[labels_exact accuracy_exact] = dcsvm_test(testy, testX, model_exact);
-%fprintf('=============================================== \n');
-fprintf('RBF kernel, DCSVM-early test accuracy %g, training time %g seconds\n', accuracy, trainingtimeerl);
-%fprintf('=============================================== \n');
-%fprintf('RBF kernel, DC-SVM test accuracy %g, training time %g seconds\n', accuracy_exact, trainingtime);
+timebegin = cputime;
+model_exact = dcsvm_poly_train_exact(trainy, trainX, C, gamma,1);
+trainingtime = cputime - timebegin;
+[labels_exact accuracy_exact] = dcsvm_test(testy, testX, model_exact);
+fprintf('=============================================== \n');
+fprintf('Linear kernel, DCSVM-early test accuracy %g, training time %g seconds\n', accuracy, trainingtimeerl);
+fprintf('=============================================== \n');
+fprintf('Linear kernel, DC-SVM test accuracy %g, training time %g seconds\n', accuracy_exact, trainingtime);
 
 fprintf('=============================================== \n');
-fprintf('RBF kernel, DCSVM-early  training time %g seconds\n', trainingtimeerl);
-%fprintf('=============================================== \n');
-%fprintf('RBF kernel, DC-SVM test  training time %g seconds\n', trainingtime);
+fprintf('Linear kernel, DCSVM-early  training time %g seconds\n', trainingtimeerl);
+fprintf('=============================================== \n');
+fprintf('Linear kernel, DC-SVM test  training time %g seconds\n', trainingtime);
 
 
 %{

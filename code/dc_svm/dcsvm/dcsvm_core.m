@@ -1,4 +1,4 @@
-function [model] = dcsvm_core(trainy, trainX, C, kernel_parameters, numcluster, level, level_stop, kk, tol, mode, method, kernel)
+function [model] = dcsvm_core(trainy, trainX, C, kernel_parameters, numcluster, level, level_stop, kk, tol, mode, method, kernel)%#codegen
 % [model] = dcsvm_core(trainy, trainX, num_cluster, level, tol, "mode", "method")
 % 
 % Arguments:
@@ -23,6 +23,7 @@ addpath('../libsvm-3.14-nobias/matlab');
 tol = 1e-2;
 n = size(trainX,1);
 d = size(trainX,2);
+
 if kernel == 0
 	libsvmcmd = sprintf('-c %g -g %g -m 8000 -e %g', C, kernel_parameters.gamma, tol);
 elseif kernel==1
@@ -32,6 +33,7 @@ randper = randperm(n);
 
 if mode == 0
 	if method == 1
+        timebegin = cputime;
 		k = numcluster;
 		%% modify this number if you want to change number of samples for clustering.  
 		max_samples_for_cluster =5000;
@@ -49,6 +51,11 @@ if mode == 0
 		model.method = 1;
 		model.kernel = 0;
 		model.centers = centers;
+        kmeanstime = cputime - timebegin;
+        fileID = fopen('exp-timebreakdown.txt','a');
+        fprintf(fileID,'Early KMeans Time : %f \n',kmeanstime);        
+        fclose(fileID);
+
 	elseif method ==0 
 		k = numcluster;
 		%% modify this number if you want to change number of samples for clustering. 
@@ -80,17 +87,24 @@ if mode == 0
 		model.Ksample = Ksample;
 	end
 	%% training
+    trainstart = cputime;
 	models={};
 	for i=1:k
 		fprintf('Train model %g\n', i);
 		models{i} = svmtrain(trainy(idx==i),trainX(idx==i,:),libsvmcmd);
-	end
+    end
+    trainend = cputime - trainstart;
 	centers = zeros(k,size(trainX,2));
 	for i=1:k
 		centers(i,:) = mean(trainX(idx==i,:),1);
 	end
 	%% fill in models
 	model.models = models;
+    traintime = cputime - trainstart;
+    fileID = fopen('exp-timebreakdown.txt','a');
+    fprintf(fileID,'Early SVM Train Time : %f \n',traintime);        
+    fclose(fileID);
+    
 
 elseif mode==1
 	if method == 1
@@ -137,18 +151,23 @@ elseif mode==1
 		max_samples_for_cluster = 2000;
 		num = min(max_samples_for_cluster, n);
 		Xsample = trainX(randper(1:num), :);
+        kernelstart = cputime;
 		if kernel == 0
 			Ksample = rbf(Xsample, Xsample, kernel_parameters.gamma);
 		elseif kernel == 1
 			Ksample = poly(Xsample, Xsample, kernel_parameters.gamma, kernel_parameters.degree);
-		end
-
+        end
+        kerneltime = cputime - kernelstart;
+        fileID = fopen('exp-timebreakdown.txt','a');
+        fprintf(fileID,'Full- Kernel Calculation Time: %f \n',kerneltime);        
+        fclose(fileID);
+        
 		totalnum = 1;
 		all_ind = {};
 		all_ind{1} = ones(n,1);
 		sample_ind{1} = ones(num,1);
 		mincluster = ceil(num/(kk^level)*5);
-
+        processstart = cputime;
 		for i=1:level-1
 			nowid = 0;
 			sample_ind{i+1} = zeros(num,1);
@@ -167,17 +186,27 @@ elseif mode==1
 				end
 				nowid = nowid + kk;
 			end
-		end
-		
+        end
+        processtime = cputime - processstart;
+        fileID = fopen('exp-timebreakdown.txt','a');
+        fprintf(fileID,'Full- Processing Clusters Time: %f \n',processtime);        
+        fclose(fileID);
+		knkmeanspredicttart = cputime;
 		if kernel == 0
 			all_ind = knkmeans_rbf_predict_alllevel(Xsample, trainX, level, sample_ind, kernel_parameters.gamma, Ksample, samecluster);
 			model.kernel = 0;
 		elseif kernel == 1
 			all_ind = knkmeans_poly_predict_alllevel(Xsample, trainX, level, sample_ind, kernel_parameters.gamma, kernel_parameters.degree, Ksample, samecluster);
 			model.kernel = 1;
-		end
+        end
+        knkmeanspredicttime = cputime - knkmeanspredicttart;
+        fileID = fopen('exp-timebreakdown.txt','a');
+        fprintf(fileID,'Full- Kernel Kmeans Predict Time: %f \n',knkmeanspredicttime);        
+        fclose(fileID);
+        
 	end
 	%% training
+    fullsvmtrainstart = cputime;
 	alpha = zeros(n,1);
 	for ll=level:-1:max(level_stop,2)
 		fprintf('Training Level %g\n',ll);
@@ -222,7 +251,11 @@ elseif mode==1
 		end
 		model.mode = 1;
 		model.model = mm_tmp;
-	end
+    end
+    fullsvmtraintime = cputime - fullsvmtrainstart;
+    fileID = fopen('exp-timebreakdown.txt','a');
+    fprintf(fileID,'Full- SVM Train Time: %f \n',fullsvmtraintime);        
+    fclose(fileID);
 end
 
 

@@ -1,3 +1,7 @@
+fileID = fopen('exp-timebreakdown.txt','a');
+fprintf(fileID,'-------------------------------------------------------------------------------------\n');        
+fprintf(fileID,'Covtype Experiment\n');
+fclose(fileID);
 addpath('../libsvm-3.14-nobias/matlab');
 maxNumCompThreads(4);
 [y X] = libsvmread('../data/covtype.libsvm.binary.scale');
@@ -15,18 +19,19 @@ timebegin = cputime;
 model = dcsvm_rbf_train(trainy, trainX, C, gamma, ncluster);
 [labels accuracy] = dcsvm_test(testy, testX, model);
 trainingtime_erl = cputime - timebegin;
-
-
-
-fprintf('Start training Gaussian kernel SVM\n');
-timebegin = cputime;
-model_exact = dcsvm_rbf_train_exact(trainy, trainX, C, gamma);
-trainingtime = cputime - timebegin;
-[labels_exact accuracy_exact] = dcsvm_test(testy, testX, model_exact);
 fprintf('=============================================\n');
 fprintf('DC Early RBF kernel, test accuracy %g training time \n', accuracy, trainingtime_erl);
-fprintf('=============================================\n');
-fprintf('RBF kernel, DC-SVM test accuracy %g, training time %g seconds\n', accuracy_exact, trainingtime);
+
+
+%fprintf('Start training Gaussian kernel SVM\n');
+%timebegin = cputime;
+%model_exact = dcsvm_rbf_train_exact(trainy, trainX, C, gamma);
+%trainingtime = cputime - timebegin;
+%[labels_exact accuracy_exact] = dcsvm_test(testy, testX, model_exact);
+%fprintf('=============================================\n');
+%fprintf('DC Early RBF kernel, test accuracy %g training time \n', accuracy, trainingtime_erl);
+%fprintf('=============================================\n');
+%fprintf('RBF kernel, DC-SVM test accuracy %g, training time %g seconds\n', accuracy_exact, trainingtime);
 
 
 

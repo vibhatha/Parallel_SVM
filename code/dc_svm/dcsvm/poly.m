@@ -5,5 +5,5 @@ function [K] = poly(X,X1,gamma, degree)
 
 n = size(X,1);
 m = size(X1,1);
-K = gamma*X*X1'+1;
+K = gamma*X*X1';
 K = K.^degree;

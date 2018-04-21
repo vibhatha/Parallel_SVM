@@ -1,0 +1,109 @@
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early KMeans Time : 0.050000 
+Early SVM Train Time : 0.050000 
+Full- Kernel Calculation Time: 0.260000 
+Full- Processing Clusters Time: 0.360000 
+Full- Kernel Kmeans Predict Time: 8.290000 
+Full- SVM Train Time: 7.150000 
+Earl Time: 0.983959, Earl Acc: 2.210000 || Exact Time: 0.983915, Exact Acc: 16.090000 
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early KMeans Time : 0.060000 
+Early SVM Train Time : 0.060000 
+Full- Kernel Calculation Time: 0.260000 
+Full- Processing Clusters Time: 0.680000 
+Full- Kernel Kmeans Predict Time: 9.310000 
+Full- SVM Train Time: 7.250000 
+Earl Time: 0.983959, Earl Acc: 3.160000 || Exact Time: 0.983915, Exact Acc: 17.540000 
+---------------------------------------------------------------
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early KMeans Time : 0.040000 
+Early SVM Train Time : 0.040000 
+Full- Kernel Calculation Time: 0.270000 
+Full- Processing Clusters Time: 0.330000 
+Full- Kernel Kmeans Predict Time: 8.320000 
+Full- SVM Train Time: 7.210000 
+Earl Acc: 0.983959, Earl Time: 2.180000 || Exact Acc: 0.983915, Exact Time: 16.160000 
+---------------------------------------------------------------
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early KMeans Time : 0.120000 
+Early SVM Train Time : 0.120000 
+Full- Kernel Calculation Time: 0.420000 
+Full- Processing Clusters Time: 0.340000 
+Full- Kernel Kmeans Predict Time: 8.410000 
+Full- SVM Train Time: 7.330000 
+Earl Acc: 0.983959, Earl Time: 2.830000 || Exact Acc: 0.983915, Exact Time: 16.580000 
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early KMeans Time : 0.070000 
+Early SVM Train Time : 2.240000 
+Full- Kernel Calculation Time: 0.560000 
+Full- Processing Clusters Time: 0.370000 
+Full- Kernel Kmeans Predict Time: 8.450000 
+Full- SVM Train Time: 7.230000 
+Earl Acc: 0.983959, Earl Time: 2.380000 || Exact Acc: 0.983915, Exact Time: 16.680000 
+-------------------------------------------------------------------------------------
+Early KMeans Time : 1.340000 
+Early SVM Train Time : 290.830000 
+Early KMeans Time : 1.270000 
+Early SVM Train Time : 288.830000 
+Early KMeans Time : 1.050000 
+Early SVM Train Time : 337.730000 
+Early KMeans Time : 1.070000 
+Early SVM Train Time : 337.040000 
+Early KMeans Time : 1.950000 
+-------------------------------------------------------------------------------------
+Webapp Experiment
+Early KMeans Time : 2.560000 
+Early SVM Train Time : 514.640000 
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early KMeans Time : 0.570000 
+Early SVM Train Time : 4.640000 
+Full- Kernel Calculation Time: 0.280000 
+Full- Processing Clusters Time: 0.420000 
+Full- Kernel Kmeans Predict Time: 9.360000 
+Full- SVM Train Time: 16.460000 
+Earl Acc: 0.951734, Earl Time: 5.270000 || Exact Acc: 0.974439, Exact Time: 26.560000 
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early SVM Train Time : 3.410000 
+Full- Kernel Calculation Time: 0.160000 
+Full- Processing Clusters Time: 0.340000 
+Full- Kernel Kmeans Predict Time: 7.000000 
+Full- SVM Train Time: 13.880000 
+Earl Acc: 0.947307, Earl Time: 10.040000 || Exact Acc: 0.873295, Exact Time: 21.410000 
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+Webapp Experiment
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early SVM Train Time : 3.450000 
+Full- Kernel Calculation Time: 0.210000 
+Full- Processing Clusters Time: 0.610000 
+Full- Kernel Kmeans Predict Time: 9.250000 
+Full- SVM Train Time: 13.900000 
+Earl Acc: 0.947307, Earl Time: 11.790000 || Exact Acc: 0.873295, Exact Time: 24.000000 
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+IJCNN Experiment
+Early SVM Train Time : 3.690000 
+Full- Kernel Calculation Time: 0.240000 
+Full- Processing Clusters Time: 0.770000 
+Full- Kernel Kmeans Predict Time: 9.900000 
+Full- SVM Train Time: 14.950000 
+Earl Acc: 0.947307, Earl Time: 13.360000 || Exact Acc: 0.873295, Exact Time: 25.900000 
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+Webapp Experiment
+Early SVM Train Time : 536.210000 
+Full- Kernel Calculation Time: 0.530000 
+Full- Processing Clusters Time: 0.680000 
+Full- Kernel Kmeans Predict Time: 108.570000 
+Full- SVM Train Time: 4626.660000 
